@@ -642,6 +642,11 @@
       // document.getElementById('liveAlertBtn').addEventListener('click', () => {
 
       // });
+      function formatarParaReal(valor) {
+    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+}
+
+
     </script>
 
     <script id="FuncaoCadastro">
@@ -854,7 +859,7 @@
                             <td>${element.dataEmissao}</td>
                             <td>${element.produto}</td>
                             <td>${element.quantidade}</td>
-                            <td>${element.valorTotal}</td>
+                            <td>${formatarParaReal(element.valorTotal)}</td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>
