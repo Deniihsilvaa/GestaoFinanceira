@@ -783,7 +783,6 @@
         $(".cadastroNFE").each(function () {
           formData[this.id] = $(this).val();
         });
-        console.log(formData);
 
         // Enviar os dados via Ajax
         $.ajax({
@@ -960,7 +959,6 @@
         inputs.forEach((input) => {
           data[input.id] = input.value; // Usa o id do input como chave e o valor inserido como valor
         });
-        console.log(data);
       }
       //   document.getElementById("salvarNFE").addEventListener("click", function () {
       //   // Captura todos os inputs e textareas com a classe 'cadastroNFE'
@@ -980,7 +978,6 @@
       //       dados: data,
       //     },
       //     success: function (response) {
-      //       console.log("Dados salvos com sucesso:", response);
       //       mostrarAlerta("Nota fiscal cadastrada com sucesso!",1);
       //     },
       //     error: function (error) {
