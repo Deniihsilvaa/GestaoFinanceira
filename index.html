@@ -25,6 +25,16 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+<!-- JSZip (necessário para exportação de arquivos Excel) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<!-- pdfMake (necessário para exportação de arquivos PDF) -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
+
+<!-- Botões de exportação do DataTables -->
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -67,14 +77,11 @@
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
     <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
     <script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.dataTables.min.js"></script>
-
     <!-- Flags CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lafeber/world-flags-sprite/stylesheets/flags32-both.css"
     />
-
-    <!-- Bootstrap JS (não esqueça de incluir) -->
 
 
     <style>
@@ -96,12 +103,13 @@
         padding: 0;
         width: 100%;
         height: 100vh;
-        font-family: "Raleway", sans-serif;
+        font-family: "Roboto Slab", serif;
         font-size: 0.8rem;
       }
       button {
         border: none;
       }
+
 
       .ui-accordion .ui-accordion-content {
         display: grid;
@@ -467,10 +475,6 @@
 
       function chamaTemplate(pagina) {
         mostrarSpinner();
-        setTimeout(() => {
-          esconderSpinner();
-        }, 1000);
-
         // Atualiza o breadcrumb com o nome da página
         const breadcrumbPage = document.getElementById("breadcrumbPage");
         if (pagina != "home") {
@@ -490,7 +494,7 @@
         if (navbarNavDropdown) {
           navbarNavDropdown.hide(); // Fecha o collapse após selecionar
         }
-
+        esconderSpinner();
         switch (paginaB) {
           case "clientes":
             cadastroCliente();
@@ -762,7 +766,7 @@
           dataType: "json",
           success: function (response) {
             if (Array.isArray(response)) {
-              renderTable(response); // Apenas os 10 primeiros registros
+              renderTableNotas(response); 
             } else {
               console.error(
                 "A resposta não contém um array de campos",
@@ -806,7 +810,7 @@
         });
       }
 
-      function renderTable(data) {
+      function renderTableNotas(data) {
         let formHTML = `
     <div class="card">
         <div class="card-header">
@@ -816,7 +820,7 @@
                 </div>
               <div class="col-lg-3">
                     </button>
-                                      <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cadastroInputnotas_entrada()">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cadastroInputnotas_entrada()">
                         <i class="bi bi-pencil-fill"></i>
                         <span>Cadastrar</span>
                     </button>
@@ -845,6 +849,7 @@
                             <th scope="col">Produto</th>
                             <th scope="col">Quantidade</th>
                             <th scope="col">Valor Total</th>
+                            <th scope="col">Visualizar</th>
                             <th scope="col">Ações</th>
                         </tr>
                     </thead>
@@ -853,13 +858,16 @@
                           .map(
                             (element, index) => `
                         <tr>
-                            <td><input class="form-check-input" type="checkbox" id="${element.id}" checked></td>
+                            <td ><input class="form-check-input" id="${element.id}" type="checkbox"></td>
                             <td>${element.id}</td>
                             <td>${element.numeroNFe}</td>
                             <td>${element.dataEmissao}</td>
                             <td>${element.produto}</td>
                             <td>${element.quantidade}</td>
                             <td>${formatarParaReal(element.valorTotal)}</td>
+                            <td><button class="btn"><span class="material-symbols-outlined">
+                              mystery
+                              </span></button></td>
                             <td>
                                 <button class="btn btn-primary">Editar</button>
                                 <button class="btn btn-danger">Excluir</button>
@@ -918,18 +926,118 @@
           scrollCollapse: true, // Desabilita o scroll horizontal
           fixedHeader: true, // Fixa o cabecalho
           responsive: true,
+          autofill: true,// habilita o autofill
+          RegExpr: true,  
+          smart:false,
+          select: true,
+          info: false,// Desabilita a informação
+
+          processing: true,
           language: {
             url: "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json",
           },
           orderCellsTop: true, // Move a coluna de ordem para o topo
-          columnDefs: [{ targets: [3], orderable: false }],
+          columnDefs: [
+            { targets: [1,5], visible: false }, // Oculta a primeira coluna
+            { targets: [3], orderable: false },
+          ],
           order: [[1, "desc"]], // Define a coluna e o tipo de ordenação
           ordering: true, // Habilita a ordenação
-          dom: "Bfrtip", // Define os botoes de exportação
-          buttons: ["copy", "csv", "excel", "pdf", "print"],
+          dom: "Blfrtip", // Define os botoes de exportação
+          buttons: [
+                {
+                    extend: 'collection',
+                    text: 'Exportar',
+                    autoClose: true,
+                    collectionLayout: 'dropdown',
+                    className: 'custom-html-collection',
+                    buttons: [
+                      'copy', 'csv', 'excel', 'print', // Botões de exportação
+                      {
+                    extend: 'pdfHtml5',
+                    exportOptions: {
+                        columns: [2, 3, 4, 5],
+                        modifier: {
+                            search: 'applied',
+                            order: 'applied',
+                        },// Define as colunas que serão exportadas
+                    },
+                    fillename: 'Notas de entrada',
+                    header: true,
+                    title: 'Notas de entrada',
+                    text: 'PDF',
+                }
+                      ],
+                },
+            ],
+        });
+        // enserir ouvinte do evento de clique na tabela e exibir o modal com o formulário e passar os dados correspondentes
+// Ao clicar em uma linha da tabela
+$("#nfeTable tbody").on("click", "tr", function () {
+    // Captura os dados da linha selecionada
+    const data = $("#nfeTable").DataTable().row(this).data();
+    // Pega o valor da primeira coluna (ID)
+    const idNotaEntrada = data.slice(0, 1);  // Supondo que o ID está na primeira coluna
+    console.log("idNotaEntrada:", idNotaEntrada);
+
+    // Chama a função para buscar os dados do backend usando o ID
+    buscardadosNotaEntradaFiltro(idNotaEntrada);
+    
+    // Mostra o modal
+    $("#modalCadastroNotaEntrada").modal("show");
+});
+
+// Função para buscar os dados da nota de entrada pelo ID
+function buscardadosNotaEntradaFiltro(id) {
+    $.ajax({
+        type: "POST",
+        url: urlAjax,  // Coloque aqui a URL correta do seu backend
+        data: { 
+            qualFuncao: "buscarNotaEntradaPorId", 
+            idNotaEntrada: id 
+        },  // Passa o ID para o backend
+        dataType: "json",
+        success: function (response) {
+            // Preenche o modal com os dados retornados
+            preencherModal(response);
+            
+            // Alterar o botão de salvar para "Editar"
+            $("#btnSalvarNota").text("Editar");
+        },
+        error: function (error) {
+            console.error("Erro ao buscar dados da Nota de Entrada:", error);
+        }
+    });
+}
+
+// Função para preencher o modal com os dados retornados
+function preencherModal(data) {
+    // Preenche os campos do modal com os dados retornados
+    $("#campoValorTotal").val(data.valorTotal);
+    $("#campoNumeroNFe").val(data.numeroNFe);
+    $("#campoDataEmissao").val(data.dataEmissao);
+    $("#campoProduto").val(data.produto);
+    $("#campoQuantidade").val(data.quantidade);
+    $("#campoValorTotal").val(data.valorTotal);
+    // Preencha os outros campos conforme necessário
+}
+      }      
+      function buscardadosNotaEntrada(data) {
+        $.ajax({
+          url: urlAjax,
+          method: 'POST',
+          data: {
+            qualFuncao: "carregardadosNotaEntradaf",
+            dados: data,
+          },
+          success: function (response) {
+            mostrarAlerta("Nota fiscal Carregada com sucesso!",1);
+          },
+          error: function (error) {
+            mostrarAlerta("Erro ao Carregar nota fiscal.",2);
+          },
         });
       }
-
       function cadastroOffCanvas() {
         document.getElementById("conteudoOffCanvas").innerHTML = `
       <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
@@ -988,7 +1096,7 @@
       //   });
       // });
 
-      // chamaTemplate("notas_entrada");
+      chamaTemplate("notas_entrada");
     </script>
   </body>
 </html>
