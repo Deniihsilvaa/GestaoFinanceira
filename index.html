@@ -25,6 +25,13 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
       rel="stylesheet"
     />
+
+<!-- jQuery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+
+<!-- jQuery UI (se necessário) -->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <!-- JSZip (necessário para exportação de arquivos Excel) -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
 
@@ -32,9 +39,26 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/pdfmake.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.2.7/vfs_fonts.js"></script>
 
-<!-- Botões de exportação do DataTables -->
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
-<script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+<!-- DataTables JS -->
+<script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
+<!-- <script src="https://cdn.datatables.net/buttons/3.1.2/js/dataTables.buttons.min.js"></script> -->
+<!-- <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script> -->
+<!-- <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
+<script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.dataTables.min.js"></script> -->
+
+    <!-- DataTables JS -->
+    <!-- <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script> -->
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
+    <script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.dataTables.min.js"></script>
+
+
+
+    <!-- Botões de exportação do DataTables -->
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/3.1.2/js/buttons.print.min.js"></script>
 
     <!-- Bootstrap CSS -->
     <link
@@ -50,11 +74,9 @@
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"
     />
 
-    <!-- jQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-    <!-- jQuery UI (if needed) -->
-    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
+
 
     <!-- DataTables CSS -->
     <link
@@ -70,19 +92,12 @@
       href="https://cdn.datatables.net/scroller/2.4.3/css/scroller.dataTables.min.css"
     />
 
-    <!-- DataTables JS -->
-    <script src="https://cdn.datatables.net/1.13.6/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/dataTables.buttons.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.html5.min.js"></script>
-    <script src="https://cdn.datatables.net/buttons/2.1.0/js/buttons.print.min.js"></script>
-    <script src="https://cdn.datatables.net/scroller/2.4.3/js/scroller.dataTables.min.js"></script>
+
     <!-- Flags CSS -->
     <link
       rel="stylesheet"
       href="https://cdn.jsdelivr.net/gh/lafeber/world-flags-sprite/stylesheets/flags32-both.css"
     />
-
 
     <style>
       :root {
@@ -109,7 +124,6 @@
       button {
         border: none;
       }
-
 
       .ui-accordion .ui-accordion-content {
         display: grid;
@@ -232,7 +246,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('clientes')"
+                      onclick="carregarPagina('clientes')"
                       >Clientes</a
                     >
                   </li>
@@ -240,7 +254,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('fornecedores')"
+                      onclick="carregarPagina('fornecedores')"
                       >Fornecedores</a
                     >
                   </li>
@@ -248,7 +262,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('produtos')"
+                      onclick="carregarPagina('produtos')"
                       >Produtos</a
                     >
                   </li>
@@ -271,7 +285,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('pedidos')"
+                      onclick="carregarPagina('pedidos')"
                       >Pedidos</a
                     >
                   </li>
@@ -279,7 +293,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('orcamentos')"
+                      onclick="carregarPagina('orcamentos')"
                       >Orçamentos</a
                     >
                   </li>
@@ -287,7 +301,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('faturamento')"
+                      onclick="carregarPagina('faturamento')"
                       >Faturamento</a
                     >
                   </li>
@@ -310,7 +324,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('gestao_estoque')"
+                      onclick="carregarPagina('gestao_estoque')"
                       >Gestão de Estoque</a
                     >
                   </li>
@@ -318,7 +332,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('compras')"
+                      onclick="carregarPagina('compras')"
                       >Compras</a
                     >
                   </li>
@@ -341,7 +355,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('contas_a_pagar')"
+                      onclick="carregarPagina('contas_a_pagar')"
                       >Contas a Pagar</a
                     >
                   </li>
@@ -349,7 +363,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('contas_a_receber')"
+                      onclick="carregarPagina('contas_a_receber')"
                       >Contas a Receber</a
                     >
                   </li>
@@ -357,7 +371,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('caixa_bancos')"
+                      onclick="carregarPagina('caixa_bancos')"
                       >Caixa e Bancos</a
                     >
                   </li>
@@ -380,7 +394,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('notas_entrada')"
+                      onclick="carregarPagina('notas_entrada')"
                       >Notas de Entrada</a
                     >
                   </li>
@@ -388,7 +402,18 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('notas_saida')"
+                      onclick="carregarPagina('request_Nfe')"
+                      >Registro de Requests</a
+                    >
+                  </li>
+
+
+                  
+                  <li>
+                    <a
+                      class="dropdown-item"
+                      href="#"
+                      onclick="carregarPagina('notas_saida')"
                       >Notas de Saída</a
                     >
                   </li>
@@ -396,7 +421,7 @@
                     <a
                       class="dropdown-item"
                       href="#"
-                      onclick="chamaTemplate('documentos_nfe')"
+                      onclick="carregarPagina('documentos_nfe')"
                       >Documentos NFe</a
                     >
                   </li>
@@ -410,7 +435,7 @@
       <nav style="--bs-breadcrumb-divider: '>'" aria-label="breadcrumb">
         <ol class="breadcrumb" id="breadcrumbNav">
           <li class="breadcrumb-item">
-            <a href="#" onclick="chamaTemplate('home')">Home</a>
+            <a href="#" onclick="carregarPagina('home')">Home</a>
           </li>
           <li
             class="breadcrumb-item active"
@@ -419,12 +444,290 @@
           ></li>
         </ol>
       </nav>
+      <template id="notas_entrada">
+        <div class="card">
+          <div class="card-header">
+            <div class="row justify-content-between">
+              <div class="col-lg-6">
+                <h1>Cadastro de notas de entrada</h1>
+              </div>
+              <div class="col-lg-3">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalCadastroNotaEntrada"
+                  onclick="cadastroInputnotas_entrada()"
+                >
+                  <i class="bi bi-pencil-fill"></i>
+                  <span>Cadastrar</span>
+                </button>
+              </div>
+              <div class="col-sm-1">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRight"
+                  aria-controls="offcanvasRight"
+                >
+                  <span class="material-symbols-outlined">
+                    keyboard_double_arrow_right
+                  </span>
+                </button>
+              </div>
+            </div>
 
-      <template id="conteudo"></template>
+            <div class="row">
+              <div class="table-responsive">
+                <table id="nfeTable" class="table table-hover"></table>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasRight"
+            aria-labelledby="offcanvasRightLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasRightLabel">
+                Filtro Avançado
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <div id="conteudoOffCanvas"></div>
+            </div>
+          </div>
+          <!-- Modal HTML -->
+          <div
+            class="modal fade"
+            id="modalCadastroNotaEntrada"
+            tabindex="-1"
+            aria-labelledby="exampleModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel">
+                    Cadastro de Nota de Entrada
+                  </h5>
+
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body" id="modalBodyContent">
+                  <!-- Formulário será injetado aqui -->
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Fechar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="salvarNFE()"
+                    data-bs-dismiss="modal"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </template>
+      <template id="request_Nfe">
+        <div class="card">
+          <div class="card-header">
+            <div class="row justify-content-between">
+              <div class="col-lg-6">
+                <h1>Cadastro de Requests</h1>
+              </div>
+              <div class="col-lg-3">
+                <button
+                  type="button"
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#modalCadastroRequests"
+                  onclick="abrirModalCadastroRequest()"
+                >
+                  <i class="bi bi-pencil-fill"></i>
+                  <span>Cadastrar</span>
+                </button>
+              </div>
+              <div class="col-sm-1">
+                <button
+                  class="btn btn-primary"
+                  type="button"
+                  data-bs-toggle="offcanvas"
+                  data-bs-target="#offcanvasRequestRight"
+                  aria-controls="offcanvasRequestRight"
+                >
+                  <span class="material-symbols-outlined">
+                    keyboard_double_arrow_right
+                  </span>
+                </button>
+              </div>
+            </div>
+      
+            <div class="row">
+              <!-- Elemento onde o total será mostrado -->
+<div>
+  <strong id="totalVisivel">Total : 0.00</strong>
+</div>
+
+              <div class="table-responsive">
+                <table id="requestTable" class="table table-hover">
+                  <thead>
+                    <tr>
+                      <th>ID</th>
+                      <th>NºREQUEST</th>
+                      <th>Data NFe</th>
+                      <th>Material</th>
+                      <th>Valor</th>
+                      <th>Quantidade</th>
+                      <th>Total</th>
+                      <th>Status</th>
+                      <th>Número NFe</th>
+                      <th>Data Emissão</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <!-- Dados serão injetados aqui -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+            <!-- Modal para Detalhes do Request -->
+<div class="modal fade" id="modalDetalhesRequest" tabindex="-1" aria-labelledby="modalDetalhesLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="modalDetalhesLabel">Detalhes do Request</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <p><strong>ID:</strong> <span id="modalRequestId"></span></p>
+        <p><strong>Número do Request:</strong> <span id="modalRequestNumber"></span></p>
+        <p><strong>Data NFe:</strong> <span id="modalDataNFe"></span></p>
+        <p><strong>Material:</strong> <span id="modalMaterial"></span></p>
+        <p><strong>Valor:</strong> <span id="modalValor"></span></p>
+        <p><strong>Quantidade:</strong> <span id="modalQuantidade"></span></p>
+        <p><strong>Total:</strong> <span id="modalTotal"></span></p>
+        <p><strong>Status:</strong> <span id="modalStatus"></span></p>
+        <p><strong>Número NFe:</strong> <span id="modalNumeroNFe"></span></p>
+        <p><strong>Data de Emissão:</strong> <span id="modalDataEmissao"></span></p>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+          </div>
+      
+          <!-- Offcanvas lateral -->
+          <div
+            class="offcanvas offcanvas-end"
+            tabindex="-1"
+            id="offcanvasRequestRight"
+            aria-labelledby="offcanvasRightLabel"
+          >
+            <div class="offcanvas-header">
+              <h5 class="offcanvas-title" id="offcanvasRequestRightLabel">
+                Página avançada
+              </h5>
+              <button
+                type="button"
+                class="btn-close"
+                data-bs-dismiss="offcanvas"
+                aria-label="Close"
+              ></button>
+            </div>
+            <div class="offcanvas-body">
+              <div id="conteudoOffCanvasRequest"></div>
+            </div>
+          </div>
+        </div>
+          <!-- Modal de cadastro -->
+          <div
+            class="modal fade"
+            id="modalCadastroRequests"
+            tabindex="-1"
+            aria-labelledby="requestModalLabel"
+            aria-hidden="true"
+          >
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="requestModalLabel">
+                    Cadastro de Request
+                  </h5>
+                  <button
+                    type="button"
+                    class="btn-close"
+                    data-bs-dismiss="modal"
+                    aria-label="Close"
+                  ></button>
+                </div>
+                <div class="modal-body" id="modalRequestBodyContent">
+                  <!-- Formulário será injetado aqui -->
+                </div>
+                <div class="modal-footer">
+                  <button
+                    type="button"
+                    class="btn btn-secondary"
+                    data-bs-dismiss="modal"
+                  >
+                    Fechar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-primary"
+                    onclick="salvarNFE()"
+                    data-bs-dismiss="modal"
+                  >
+                    Salvar
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+       
+      </template>
+      
+      <template id="menuinit">
+        <div class="card">
+          <h1>Menu inicial</h1>
+          <h1>Menu inicial</h1>
+          <h1>Menu inicial</h1>
+          <h1>Menu inicial</h1>
+          <h1>Menu inicial</h1>
+        </div>
+      </template>
+
       <!-- Conteúdo Principal -->
       <div class="container mt-4">
         <div class="card">
-          <div id="conteudo-principal"></div>
+          <div id="conteudo"></div>
         </div>
       </div>
     </div>
@@ -473,29 +776,22 @@
         }
       };
 
-      function chamaTemplate(pagina) {
+      function carregarmodal(pagina, modal) {
         mostrarSpinner();
-        // Atualiza o breadcrumb com o nome da página
-        const breadcrumbPage = document.getElementById("breadcrumbPage");
-        if (pagina != "home") {
-          breadcrumbPage.textContent =
-            pagina.charAt(0).toUpperCase() + pagina.slice(1);
-        }
 
-        // let x = "conteudo-principal";
-        // const formularioID = inserirTemplate(pagina, x);
-        // if (!formularioID) return;
+        const formularioModal = inserirTemplate(pagina, modal);
 
-        // const formularioID = inserirTemplate(pagina);
-        const paginaB = pagina;
-        const navbarNavDropdown = bootstrap.Collapse.getInstance(
-          document.getElementById("navbarNavDropdown")
-        );
-        if (navbarNavDropdown) {
-          navbarNavDropdown.hide(); // Fecha o collapse após selecionar
-        }
         esconderSpinner();
-        switch (paginaB) {
+      }
+      function carregarPagina(pagina) {
+        mostrarSpinner();
+        atualizarBreadcrumb(pagina);
+
+        const formularioID = inserirTemplate(pagina, "conteudo");
+
+        // if (!formularioID) return;
+        esconderSpinner();
+        switch (pagina) {
           case "clientes":
             cadastroCliente();
             break;
@@ -506,10 +802,10 @@
             cadastroprodutos();
             break;
           case "notas_entrada":
-            cadastronotas_entrada();
+            carregarTabelaNotas_entrada();
             break;
           case "notas_saida":
-            cadastronotas_saida();
+            // cadastronotas_saida();
             break;
           case "documentos_nfe":
             cadastrodocumentos_nfe();
@@ -517,9 +813,33 @@
           case "home":
             home();
             break;
-          default:
-            document.getElementById("conteudo-principal").innerHTML = ``;
+            case "request_Nfe":
+              request_Nfe();
             break;
+
+
+
+            
+          default:
+            document.getElementById(
+              "conteudo"
+            ).innerHTML = `<h1>Conteúdo ${pagina} não encontrado</h1>`;
+            break;
+        }
+      }
+
+      function atualizarBreadcrumb(pagina) {
+        const breadcrumbPage = document.getElementById("breadcrumbPage");
+        breadcrumbPage.textContent =
+          pagina.charAt(0).toUpperCase() + pagina.slice(1);
+      }
+
+      function esconderNavbarDropdown() {
+        const navbarNavDropdown = bootstrap.Collapse.getInstance(
+          document.getElementById("navbarNavDropdown")
+        );
+        if (navbarNavDropdown) {
+          navbarNavDropdown.hide();
         }
       }
     </script>
@@ -647,45 +967,46 @@
 
       // });
       function formatarParaReal(valor) {
-    return valor.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
-}
-
-
+        return valor.toLocaleString("pt-BR", {
+          style: "currency",
+          currency: "BRL",
+        });
+      }
     </script>
 
     <script id="FuncaoCadastro">
       function cadastroCliente() {
-        document.getElementById("conteudo-principal").innerHTML = `
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Cadastro de Clientes</h1>
-      </div>
-    </div>
-  </div>
-  `;
+        document.getElementById("conteudo").innerHTML = `
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1>Cadastro de Clientes</h1>
+            </div>
+          </div>
+        </div>
+        `;
       }
       function cadastrofornecedores() {
-        document.getElementById("conteudo-principal").innerHTML = `
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Cadastro de fornecedores</h1>
-      </div>
-    </div>
-  </div>
-  `;
+        document.getElementById("conteudo").innerHTML = `
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1>Cadastro de fornecedores</h1>
+            </div>
+          </div>
+        </div>
+        `;
       }
       function cadastroprodutos() {
-        document.getElementById("conteudo-principal").innerHTML = `
-  <div class="container">
-    <div class="row">
-      <div class="col-12">
-        <h1>Cadastro de produtos</h1>
-      </div>
-    </div>
-  </div>
-  `;
+        document.getElementById("conteudo").innerHTML = `
+        <div class="container">
+          <div class="row">
+            <div class="col-12">
+              <h1>Cadastro de produtos</h1>
+            </div>
+          </div>
+        </div>
+        `;
       }
       function cadastroInputnotas_entrada() {
         mostrarSpinner();
@@ -704,35 +1025,39 @@
 
                 if (inputId == "textarea") {
                   formHTML += `
-                            <div class="col-6">
-                              <div class="mb-3">
-                                <label for="${
-                                  field.label
-                                }" class="form-label">${field.label}</label>
-                                <textarea 
-                                  class="form-control cadastroNFE" 
-                                  id="${field.label}" 
-                                  placeholder="${field.placeholder}" 
-                                  ${
-                                    field.required ? "required" : ""
-                                  }></textarea>
-                              </div>
-                            </div>`;
+                                  <div class="col-6">
+                                    <div class="mb-3">
+                                      <label for="${
+                                        field.id
+                                      }" class="form-label">${
+                    field.label
+                  }</label>
+                                      <textarea
+                                        class="form-control cadastroNFE"
+                                        id="${field.id}"
+                                        placeholder="${field.placeholder}"
+                                        ${
+                                          field.required ? "required" : ""
+                                        }></textarea>
+                                    </div>
+                                  </div>`;
                 } else {
                   formHTML += `
-                            <div class="col-6">
-                              <div class="mb-3">
-                                <label for="${
-                                  field.label
-                                }" class="form-label">${field.label}</label>
-                                <input 
-                                  type="${field.type}" 
-                                  class="form-control cadastroNFE" 
-                                  id="${field.label}" 
-                                  placeholder="${field.placeholder}" 
-                                  ${field.required ? "required" : ""}>
-                              </div>
-                            </div>`;
+                                  <div class="col-6">
+                                    <div class="mb-3">
+                                      <label for="${
+                                        field.id
+                                      }" class="form-label">${
+                    field.label
+                  }</label>
+                                      <input
+                                        type="${field.type}"
+                                        class="form-control cadastroNFE"
+                                        id="${field.id}"
+                                        placeholder="${field.placeholder}"
+                                        ${field.required ? "required" : ""}>
+                                    </div>
+                                  </div>`;
                 }
               });
 
@@ -740,9 +1065,6 @@
 
               // Insere o formulário dentro do corpo do modal
               document.getElementById("modalBodyContent").innerHTML = formHTML;
-
-              // Exibe o modal
-              $("#modalCadastroNotaEntrada").modal("show");
             } else {
               console.error(
                 "A resposta não contém um array de campos",
@@ -758,15 +1080,17 @@
         });
       }
 
-      function cadastronotas_entrada() {
+      function carregarTabelaNotas_entrada() {
+        mostrarSpinner();
         $.ajax({
           type: "POST",
           url: urlAjax,
           data: { qualFuncao: "carregarBaseNfe" },
           dataType: "json",
           success: function (response) {
+            esconderSpinner();
             if (Array.isArray(response)) {
-              renderTableNotas(response); 
+              renderTableNotas(response);
             } else {
               console.error(
                 "A resposta não contém um array de campos",
@@ -780,157 +1104,109 @@
           },
         });
       }
-      function salvarCadastroNotaEntrada() {
+
+      function carregarAjax(qualFuncao) {
         mostrarSpinner();
-        let formData = {}; // Objeto para armazenar os dados do formulário
-
-        // Pegar todos os valores dos inputs com a classe 'cadastroNFE'
-        $(".cadastroNFE").each(function () {
-          formData[this.id] = $(this).val();
-        });
-
-        // Enviar os dados via Ajax
-        $.ajax({
-          type: "POST",
-          url: urlAjax,
-          data: {
-            qualFuncao: "salvarCadastroNotaEntrada",
-            formData: formData,
-          },
-          success: function (response) {
-            esconderSpinner();
-            $("#modalCadastroNotaEntrada").modal("hide"); // Fechar o modal após salvar
-            mostrarAlerta("Dados salvos com sucesso!", 1);
-          },
-          error: function (error) {
-            esconderSpinner();
-            console.error("Erro ao salvar os dados:", error);
-            mostrarAlerta("Erro ao salvar os dados.", 2);
-          },
+        return new Promise((resolve, reject) => {
+          $.ajax({
+            type: "POST",
+            url: urlAjax,
+            data: { qualFuncao: qualFuncao },
+            dataType: "json",
+            success: function (response) {
+              // Verificar se a resposta é um array
+              if (Array.isArray(response)) {
+                resolve(response); // Retornar o array de dados
+              } else {
+                console.error(
+                  "A resposta não contém um array de campos",
+                  response
+                );
+                reject(new Error("A resposta não contém um array"));
+              }
+            },
+            error: function (error) {
+              console.error("Erro na requisição Ajax ==>", error);
+              reject(error); // Rejeitar a promise em caso de erro
+            },
+            complete: function () {
+              // Ocultar o spinner quando a requisição estiver completa
+              esconderSpinner();
+            },
+          });
         });
       }
 
       function renderTableNotas(data) {
         let formHTML = `
-    <div class="card">
-        <div class="card-header">
-            <div class='row justify-content-between'>
-                <div class="col-lg-6">
-                    <h1>Cadastro de notas de entrada</h1>
-                </div>
-              <div class="col-lg-3">
-                    </button>
-                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" onclick="cadastroInputnotas_entrada()">
-                        <i class="bi bi-pencil-fill"></i>
-                        <span>Cadastrar</span>
-                    </button>
-                </div>
-                <div class="col-sm-1">
-                    <button class="btn btn-primary" type="button" data-bs-toggle="offcanvas"  data-bs-target="#offcanvasRight" aria-controls="offcanvasRight">
-                        <span class="material-symbols-outlined">
-                            keyboard_double_arrow_right
-                        </span>
-                    </button>
-                </div>
-            </div>
+          <thead>
+                  <tr>
+                      <th scope="col"></th>
+                      <th scope="col">ID</th>
+                      <th scope="col">Número NFe</th>
+                      <th scope="col">Número Request</th>
+                      <th scope="col">Data Emissão</th>
+                      <th scope="col">Produto</th>
+                      <th scope="col">Quantidade</th>
+                      <th scope="col">Valor Total</th>
+                      <th scope="col">Visualizar</th>
+                      <th scope="col">Ações</th>
+                  </tr>
+          </thead>
+                          `;
+        formHTML += `
+                          <tbody>
+                              ${data
+                                .map(
+                                  (element, index) => `
+                              <tr>
+                                  <td ><input class="form-check-input" id="${
+                                    element.id
+                                  }" type="checkbox"></td>
+                                  <td>${element.id}</td>
+                                  <td>${element.numeroNFe}</td>
+                                  <td>${element.numeroRequest}</td>
+                                  <td>${element.dataEmissao}</td>
+                                  <td>${element.produto}</td>
+                                  <td>${element.quantidade}</td>
+                                  <td>${formatarParaReal(
+                                    element.valorTotal
+                                  )}</td>
+                                  <td><button class="btn"><span class="material-symbols-outlined">
+                                    mystery
+                                    </span></button></td>
+                                  <td>
+                                      <button class="btn btn-primary">Editar</button>
+                                      <button class="btn btn-danger">Excluir</button>
+                                  </td>
+                              </tr>`
+                                )
+                                .join("")}
+                        `;
+        formHTML += `
+                          </tbody>`;
 
-            <div class='row'>
-                <div class='card-body'>
-
-                </div> 
-                <div class="table-responsive">
-                    <table id="nfeTable" class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th scope="col"></th>
-                            <th scope="col">ID</th>
-                            <th scope="col">Número NFe</th>
-                            <th scope="col">Data Emissão</th>
-                            <th scope="col">Produto</th>
-                            <th scope="col">Quantidade</th>
-                            <th scope="col">Valor Total</th>
-                            <th scope="col">Visualizar</th>
-                            <th scope="col">Ações</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        ${data
-                          .map(
-                            (element, index) => `
-                        <tr>
-                            <td ><input class="form-check-input" id="${element.id}" type="checkbox"></td>
-                            <td>${element.id}</td>
-                            <td>${element.numeroNFe}</td>
-                            <td>${element.dataEmissao}</td>
-                            <td>${element.produto}</td>
-                            <td>${element.quantidade}</td>
-                            <td>${formatarParaReal(element.valorTotal)}</td>
-                            <td><button class="btn"><span class="material-symbols-outlined">
-                              mystery
-                              </span></button></td>
-                            <td>
-                                <button class="btn btn-primary">Editar</button>
-                                <button class="btn btn-danger">Excluir</button>
-                            </td>
-                        </tr>`
-                          )
-                          .join("")}
-                    </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-
-        <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-            <div class="offcanvas-header">
-                <h5 class="offcanvas-title" id="offcanvasRightLabel">Filtro Avançado</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-            </div>
-            <div class="offcanvas-body">
-                <div id="conteudoOffCanvas"></div>
-            </div>
-        </div>
-        <!-- Modal HTML -->
-        <div class="modal fade" id="modalCadastroNotaEntrada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-          <div class="modal-dialog modal-lg">
-            <div class="modal-content">
-              <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Cadastro de Nota de Entrada</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-              </div>
-              <div class="modal-body" id="modalBodyContent">
-                <!-- Formulário será injetado aqui -->
-              </div>
-              <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
-                <button type="button" class="btn btn-primary" onclick="salvarCadastroNotaEntrada()">Salvar</button>
-              </div>
-            </div>
-          </div>
-        </div>
-
-
-    </div>`;
-
-        document.getElementById("conteudo-principal").innerHTML = formHTML;
+        document.getElementById("nfeTable").innerHTML = formHTML;
 
         // Inicializa o DataTables com botões de exportação
         $("#nfeTable").DataTable({
+          destroy: true, // Destruir a tabela existente
+          buttons: ["copy", "csv", "excel", "pdf", "print"],
           paging: true, // Desabilita a paginação
           pageLength: 10, // Define o número de registros por página
           lengthMenu: [
             [10, 25, 50, -1],
             [10, 25, 50, "Todos"],
           ], // Opções de exibição de registros por página
-          searching: true, // Desabilita a busca nativa, já que temos a busca personalizada
-          scrollCollapse: true, // Desabilita o scroll horizontal
+          searching: true, // Habilita a busca
+          scrollCollapse: true, // Desabilita o scroll
           fixedHeader: true, // Fixa o cabecalho
-          responsive: true,
-          autofill: true,// habilita o autofill
-          RegExpr: true,  
-          smart:false,
-          select: true,
-          info: false,// Desabilita a informação
+          responsive: true, // Habilita o responsivo
+          autofill: true, // habilita o autofill
+          RegExpr: true,// Habilita o RegExpr
+          smart: false, // Desabilita o smart
+          select: true, // Habilita a seleção
+          info: false, // Desabilita a informação
 
           processing: true,
           language: {
@@ -938,118 +1214,89 @@
           },
           orderCellsTop: true, // Move a coluna de ordem para o topo
           columnDefs: [
-            { targets: [1,5], visible: false }, // Oculta a primeira coluna
+            { targets: [1, 5], visible: false }, // Oculta a primeira coluna
             { targets: [3], orderable: false },
           ],
           order: [[1, "desc"]], // Define a coluna e o tipo de ordenação
           ordering: true, // Habilita a ordenação
           dom: "Blfrtip", // Define os botoes de exportação
           buttons: [
+            {
+              extend: "collection",
+              text: "Exportar",
+              autoClose: true,
+              collectionLayout: "dropdown",
+              className: "custom-html-collection",
+              buttons: [
+                "copy",
+                "csv",
+                "excel",
+                "print", // Botões de exportação
                 {
-                    extend: 'collection',
-                    text: 'Exportar',
-                    autoClose: true,
-                    collectionLayout: 'dropdown',
-                    className: 'custom-html-collection',
-                    buttons: [
-                      'copy', 'csv', 'excel', 'print', // Botões de exportação
-                      {
-                    extend: 'pdfHtml5',
-                    exportOptions: {
-                        columns: [2, 3, 4, 5],
-                        modifier: {
-                            search: 'applied',
-                            order: 'applied',
-                        },// Define as colunas que serão exportadas
-                    },
-                    fillename: 'Notas de entrada',
-                    header: true,
-                    title: 'Notas de entrada',
-                    text: 'PDF',
-                }
-                      ],
+                  extend: "pdfHtml5",
+                  exportOptions: {
+                    columns: [2, 3, 4, 5],
+                    modifier: {
+                      search: "applied",
+                      order: "applied",
+                    }, // Define as colunas que serão exportadas
+                  },
+                  fillename: "Notas de entrada",
+                  header: true,
+                  title: "Notas de entrada",
+                  text: "PDF",
                 },
-            ],
+              ],
+            },
+          ],
         });
         // enserir ouvinte do evento de clique na tabela e exibir o modal com o formulário e passar os dados correspondentes
-// Ao clicar em uma linha da tabela
-$("#nfeTable tbody").on("click", "tr", function () {
-    // Captura os dados da linha selecionada
-    const data = $("#nfeTable").DataTable().row(this).data();
-    // Pega o valor da primeira coluna (ID)
-    const idNotaEntrada = data.slice(0, 1);  // Supondo que o ID está na primeira coluna
-    console.log("idNotaEntrada:", idNotaEntrada);
-
-    // Chama a função para buscar os dados do backend usando o ID
-    buscardadosNotaEntradaFiltro(idNotaEntrada);
-    
-    // Mostra o modal
-    $("#modalCadastroNotaEntrada").modal("show");
-});
-
-// Função para buscar os dados da nota de entrada pelo ID
-function buscardadosNotaEntradaFiltro(id) {
-    $.ajax({
-        type: "POST",
-        url: urlAjax,  // Coloque aqui a URL correta do seu backend
-        data: { 
-            qualFuncao: "buscarNotaEntradaPorId", 
-            idNotaEntrada: id 
-        },  // Passa o ID para o backend
-        dataType: "json",
-        success: function (response) {
-            // Preenche o modal com os dados retornados
-            preencherModal(response);
-            
-            // Alterar o botão de salvar para "Editar"
-            $("#btnSalvarNota").text("Editar");
-        },
-        error: function (error) {
+        // Ao clicar em uma linha da tabela
+      }
+      // TODO: Implementar a busca de dados da Nota de Entrada
+      function buscardadosNotaEntradaFiltro(id) {
+        $.ajax({
+          type: "POST",
+          url: urlAjax, // Coloque aqui a URL correta do seu backend
+          data: {
+            qualFuncao: "buscarNotaEntradaPorId",
+            idNotaEntrada: id,
+          }, // Passa o ID para o backend
+          dataType: "json",
+          success: function (response) {},
+          error: function (error) {
             console.error("Erro ao buscar dados da Nota de Entrada:", error);
-        }
-    });
-}
-
-// Função para preencher o modal com os dados retornados
-function preencherModal(data) {
-    // Preenche os campos do modal com os dados retornados
-    $("#campoValorTotal").val(data.valorTotal);
-    $("#campoNumeroNFe").val(data.numeroNFe);
-    $("#campoDataEmissao").val(data.dataEmissao);
-    $("#campoProduto").val(data.produto);
-    $("#campoQuantidade").val(data.quantidade);
-    $("#campoValorTotal").val(data.valorTotal);
-    // Preencha os outros campos conforme necessário
-}
-      }      
+          },
+        });
+      }
       function buscardadosNotaEntrada(data) {
         $.ajax({
           url: urlAjax,
-          method: 'POST',
+          method: "POST",
           data: {
             qualFuncao: "carregardadosNotaEntradaf",
             dados: data,
           },
           success: function (response) {
-            mostrarAlerta("Nota fiscal Carregada com sucesso!",1);
+            mostrarAlerta("Nota fiscal Carregada com sucesso!", 1);
           },
           error: function (error) {
-            mostrarAlerta("Erro ao Carregar nota fiscal.",2);
+            mostrarAlerta("Erro ao Carregar nota fiscal.", 2);
           },
         });
       }
       function cadastroOffCanvas() {
         document.getElementById("conteudoOffCanvas").innerHTML = `
-      <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
-          <div class="offcanvas-header">
-              <h5 class="offcanvas-title" id="offcanvasRightLabel">Filtro Avançados</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
-          </div>
-          <div class="offcanvas-body">
-              <div id="conteudoOffCanvas"></div>
-          </div>
-      </div>
-      `;
+            <div class="offcanvas offcanvas-end" tabindex="-1" id="offcanvasRight" aria-labelledby="offcanvasRightLabel">
+                <div class="offcanvas-header">
+                    <h5 class="offcanvas-title" id="offcanvasRightLabel">Filtro Avançados</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+                </div>
+                <div class="offcanvas-body">
+                    <div id="conteudoOffCanvas"></div>
+                </div>
+            </div>
+            `;
       }
       function converteNumeroParaReal(numero) {
         return new Intl.NumberFormat("pt-BR", {
@@ -1062,41 +1309,417 @@ function preencherModal(data) {
         return (numeroArredondado = parseFloat(numeroArredondado)); // 1.21 como um número
       }
       function salvarNFE() {
-        // Captura todos os inputs e textareas com a classe 'cadastroNFE'
+        mostrarSpinner();
         const inputs = document.querySelectorAll(".cadastroNFE");
         let data = {};
         inputs.forEach((input) => {
-          data[input.id] = input.value; // Usa o id do input como chave e o valor inserido como valor
+          data[input.id] = input.value;
+        });
+
+        // console.log("Dados a serem enviados:", data); // Verificar se todos os dados estão sendo capturados
+
+        $.ajax({
+          url: urlAjax,
+          method: "POST",
+          data: {
+            qualFuncao: "salvarNotaEntrada",
+            dados: JSON.stringify(data),
+          },
+          dataType: "json",          
+          success: function (response) {
+            console.log("response", response);
+            if (response.situacao) {
+              carregarTabelaNotas_entrada();
+              mostrarAlerta(response.mensagem, 1);
+              esconderSpinner();
+            } else {
+              esconderSpinner();
+              mostrarAlerta(response.mensagem, 2);
+            }
+          },
+          error: function (error) {
+            esconderSpinner();
+            console.error("Erro ao salvar os dados:", error);
+            mostrarAlerta("Erro ao cadastrar nota fiscal.", 2);
+          },
         });
       }
-      //   document.getElementById("salvarNFE").addEventListener("click", function () {
-      //   // Captura todos os inputs e textareas com a classe 'cadastroNFE'
-      //   const inputs = document.querySelectorAll(".cadastroNFE");
-      //   let data = {};
 
-      //   inputs.forEach((input) => {
-      //     data[input.id] = input.value; // Usa o id do input como chave e o valor inserido como valor
-      //   });
+      </script>
 
-      //   // Faz a requisição Ajax para enviar os dados
-      //   $.ajax({
-      //     url: urlAjax,
-      //     method: 'POST',
-      //     data: {
-      //       qualFuncao: "salvarNotaEntrada",
-      //       dados: data,
-      //     },
-      //     success: function (response) {
-      //       mostrarAlerta("Nota fiscal cadastrada com sucesso!",1);
-      //     },
-      //     error: function (error) {
-      //       console.error("Erro ao salvar os dados:", error);
-      //       mostrarAlerta("Erro ao cadastrar nota fiscal.",2);
-      //     },
-      //   });
-      // });
+<script id="RegistroRequests">
 
-      chamaTemplate("notas_entrada");
+function request_Nfe() {
+        mostrarSpinner();
+        $.ajax({
+          type: "POST",
+          url: urlAjax,
+          data: { qualFuncao: "pegarDadosBaseRequest" },
+          dataType: "json",
+          success: function (response) {
+            // console.log("response", response);
+            esconderSpinner();
+            if (Array.isArray(response)) {
+              carregarDadosTabela(response);
+            } else {
+              console.error(
+                "A resposta não contém um array de campos",
+                response
+              );
+            }
+          },
+          error: function (error) {
+            console.error("Erro na requisição Ajax ==>", error);
+            // Forneça feedback ao usuário aqui
+          },
+        });
+      }
+
+  // Função para abrir o modal de cadastro
+  function abrirModalCadastroRequest() {
+  const modalContent = document.getElementById('modalRequestBodyContent');
+
+  // Gerar o formulário HTML dentro do modal
+  modalContent.innerHTML = `
+    <form id="formCadastroRequest">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="numeroRequest" class="form-label">Número do Request</label>
+            <input type="text" class="form-control" id="numeroRequest" name="numeroRequest">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="dataNFe" class="form-label">Data NFe</label>
+            <input type="date" class="form-control" id="dataNFe" name="dataNFe">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="material" class="form-label">Material</label>
+            <select class="form-select" id="material" name="material">
+              <option selected>Escolha...</option>
+            </select>
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="valor" class="form-label">Valor</label>
+            <input type="number" class="form-control" id="valor" name="valor">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="quantidade" class="form-label">Quantidade</label>
+            <input type="number" class="form-control" id="quantidade" name="quantidade">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="total" class="form-label">Total</label>
+            <input type="number" class="form-control" id="total" name="total">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="status" class="form-label">Status</label>
+            <input type="text" class="form-control" id="status" name="status">
+          </div>
+        </div>
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="numeroNFe" class="form-label">Número da NFe</label>
+            <input type="text" class="form-control" id="numeroNFe" name="numeroNFe">
+          </div>
+        </div>
+      </div>
+      
+      <div class="row">
+        <div class="col-md-6">
+          <div class="mb-3">
+            <label for="dataEmissao" class="form-label">Data de Emissão</label>
+            <input type="date" class="form-control" id="dataEmissao" name="dataEmissao">
+          </div>
+        </div>
+      </div>
+    </form>
+  `;
+
+  // Chama a função para buscar e preencher os materiais no campo de seleção
+  buscarMateriais();
+}
+// Função para buscar materiais e preencher o select
+function buscarMateriais() {
+  // Simulação de dados, em uma aplicação real você buscaria de uma API ou planilha
+  const materiais = [
+    { id: 1, nome: 'Material A' },
+    { id: 2, nome: 'Material B' },
+    { id: 3, nome: 'Material C' },
+  ];
+
+  const materialSelect = document.getElementById('material');
+
+  // Limpa as opções existentes
+  materialSelect.innerHTML = '<option selected>Escolha...</option>';
+
+  // Adiciona os materiais ao select
+  materiais.forEach((material) => {
+    const option = document.createElement('option');
+    option.value = material.id;
+    option.textContent = material.nome;
+    materialSelect.appendChild(option);
+  });
+}
+
+function situcaoRequest() {
+  // Simulação de dados, em uma aplicação real você buscaria de uma API ou planilha
+  const materiais = [
+    { id: 1, nome: 'Material A' },
+    { id: 2, nome: 'Material B' },
+    { id: 3, nome: 'Material C' },
+  ];
+
+  const materialSelect = document.getElementById('material');
+
+  // Limpa as opções existentes
+  materialSelect.innerHTML = '<option selected>Escolha...</option>';
+
+  // Adiciona os materiais ao select
+  materiais.forEach((material) => {
+    const option = document.createElement('option');
+    option.value = material.id;
+    option.textContent = material.nome;
+    materialSelect.appendChild(option);
+  });
+}
+
+// Função para carregar os dados na tabela
+function carregarDadosTabela(requests) {
+  const tableBody = document.querySelector('#requestTable tbody');
+  tableBody.innerHTML = ''; // Limpa o conteúdo da tabela
+
+  // Usando fragment para melhorar a performance na inserção dos dados
+  const fragment = document.createDocumentFragment();
+
+  requests.forEach((request) => {
+    const row = document.createElement('tr');
+    row.setAttribute('data-id', request.id);  // Associando o ID à linha
+
+    row.innerHTML = `
+      <td>${request.id || ''}</td>
+      <td>
+        <span class="material-symbols-outlined visibility-icon" 
+              style="cursor: pointer;" 
+              data-id="${request.id}">
+          visibility
+        </span> 
+        ${request.nREQUEST || ''}
+      </td>
+      <td>${request.dataNFe || ''}</td>
+      <td>${request.material || ''}</td>
+      <td>${request.valor || ''}</td>
+      <td>${request.quantidade || ''}</td>
+      <td>${request.total || ''}</td>
+      <td>${request.status || ''}</td>
+      <td>${request.numeroNFe || ''}</td>
+      <td>${request.dataEmissao || ''}</td>
+    `;
+
+    fragment.appendChild(row);  // Adiciona a linha ao fragmento
+  });
+
+  tableBody.appendChild(fragment);  // Adiciona o fragmento à tabela
+
+  // Inicializa o DataTables com botões de exportação
+  $("#requestTable").DataTable({
+    destroy: true, // Destruir a tabela existente
+    pageLength: 6, // Exibir 6 registros por página
+    lengthMenu: [
+      [10, 25, 50, -1],
+      [10, 25, 50, "Todos"],
+    ], // Opções de exibição de registros por página
+    searching: true, // Habilita a busca
+    scrollCollapse: true, // Desabilita o scroll
+    fixedHeader: true, // Fixa o cabeçalho
+    responsive: true, // Habilita a responsividade
+    autoFill: true, // Habilita o autoFill
+    regex: true, // Habilita regex nas buscas
+    smart: false, // Desabilita busca 'smart' para mais precisão
+    select: true, // Habilita a seleção de linhas
+    info: true, // Mostra a informação sobre a tabela
+    processing: true, // Exibe indicador de processamento
+    language: {
+      url: "https://cdn.datatables.net/plug-ins/1.10.25/i18n/Portuguese-Brasil.json",
+    },
+    orderCellsTop: true, // Move a coluna de ordem para o topo
+    order: [[0, "desc"]], // Define a coluna de ordenação padrão
+    ordering: true, // Habilita a ordenação
+    orderFixed: [[0, "desc"]], // Define a coluna de ordenação fixa
+    orderCellsTop: true, // Move a coluna de ordem para o topo
+    columnDefs: [
+      { targets: [4, 5, 8, 9], visible: false }, // Oculta algumas colunas
+      {
+        targets: 6, // Índice da coluna que contém 'request.total'
+        render: function(data, type, row) {
+          if (type === 'display' || type === 'filter') {
+            // Formatar o valor como moeda brasileira
+            return new Intl.NumberFormat('pt-BR', { 
+              style: 'currency', 
+              currency: 'BRL' 
+            }).format(data);
+          }
+          return data;
+        }
+      }
+    ],
+    dom: "Blfrtip", // Define os botões de exportação
+    buttons: [
+      {
+        extend: "collection",
+        text: "Exportar",
+        autoClose: true,
+        collectionLayout: "dropdown",
+        className: "custom-html-collection",
+        buttons: [
+          "copy",
+          "csv",
+          "excel",
+          "print", // Botões de exportação
+          {
+            extend: "pdfHtml5",
+            exportOptions: {
+              columns: [2, 3, 4, 5], // Colunas que serão exportadas
+              modifier: {
+                search: "applied",
+                order: "applied",
+              },
+            },
+            filename: "Requests",
+            title: "Requests",
+            text: "PDF",
+          },
+        ],
+      },
+    ],
+  });
+
+  // Adiciona o ouvinte de clique para os ícones de "visibility"
+// Substitua o ouvinte por um baseado no evento 'draw.dt' do DataTables
+$('#requestTable').on('draw.dt', function() {
+  // Adiciona o ouvinte de clique para os ícones de "visibility"
+  document.querySelector('#requestTable').addEventListener('click', function(event) {
+    // Verifica se o ícone clicado é o de "visibility"
+    if (event.target.classList.contains('visibility-icon')) {
+      const requestId = event.target.getAttribute('data-id'); // Pega o ID do request da linha
+
+      // Aqui você pode buscar o request correspondente na lista requests
+      const request = requests.find(req => req.id === parseInt(requestId));
+
+      // Preenchendo o conteúdo do modal com os dados da linha selecionada
+      document.getElementById('modalRequestId').innerText = request.id || '';
+      document.getElementById('modalRequestNumber').innerText = request.nREQUEST || '';
+      document.getElementById('modalDataNFe').innerText = request.dataNFe || '';
+      document.getElementById('modalMaterial').innerText = request.material || '';
+      document.getElementById('modalValor').innerText = request.valor || '';
+      document.getElementById('modalQuantidade').innerText = request.quantidade || '';
+      document.getElementById('modalTotal').innerText = request.total || '';
+      document.getElementById('modalStatus').innerText = request.status || '';
+      document.getElementById('modalNumeroNFe').innerText = request.numeroNFe || '';
+      document.getElementById('modalDataEmissao').innerText = request.dataEmissao || '';
+
+      // Exibe o modal
+      $('#modalDetalhesRequest').modal('show');
+    }
+  });
+
+  // Atualiza o total visível sempre que a tabela é redesenhada
+  calcularTotalVisivel($("#requestTable").DataTable());
+});
+
+
+  calcularTotalVisivel($("#requestTable").DataTable()); // Calcula o total visível
+}
+
+function calcularTotalVisivel(dataTable) {
+  if (!dataTable || !$.fn.DataTable.Api) {
+    console.error("dataTable não é uma instância válida.");
+    return;
+  }
+
+  // Somar o total de todas as linhas visíveis
+  let totalVisivel = dataTable
+    .column(6, { page: 'current' }) // Coluna do "request.total" (index 6)
+    .data()
+    .reduce((acc, valor) => {
+      return acc + parseFloat(valor) || 0; // Somar convertendo para float
+    }, 0);
+
+  // Formatar o total em moeda brasileira
+  let totalFormatado = new Intl.NumberFormat('pt-BR', { 
+    style: 'currency', 
+    currency: 'BRL' 
+  }).format(totalVisivel);
+  
+  // Exibe o valor total na interface
+  document.getElementById('totalVisivel').innerText = `Total Visível: ${totalFormatado}`;
+}
+
+
+
+// Função para salvar os dados inseridos no formulário do modal
+function salvarNFE() {
+  const form = document.getElementById('formCadastroRequest');
+  const formData = new FormData(form);
+
+  // Simula o envio para o servidor
+  const novoRequest = {
+    ID: Date.now(), // Exemplo de geração de ID
+    NºREQUEST: formData.get('numeroRequest'),
+    dataNFe: formData.get('dataNFe'),
+    material: formData.get('material'),
+    valor: formData.get('valor'),
+    quantidade: formData.get('quantidade'),
+    total: formData.get('total'),
+    status: formData.get('status'),
+    numeroNFe: formData.get('numeroNFe'),
+    dataEmissao: formData.get('dataEmissao')
+  };
+
+  // Simula adicionar o novo request à tabela
+  carregarDadosTabela([novoRequest]);
+}
+function abrirModalDetalhes(id) {
+  // Aqui você pode buscar o request pelo ID (caso tenha uma lista/array de requests)
+  const request = requests.find(req => req.id === id);
+
+  // Preenchendo o conteúdo do modal com os dados da linha
+  document.getElementById('modalRequestId').innerText = request.id || '';
+  document.getElementById('modalRequestNumber').innerText = request.nREQUEST || '';
+  document.getElementById('modalDataNFe').innerText = request.dataNFe || '';
+  document.getElementById('modalMaterial').innerText = request.material || '';
+  document.getElementById('modalValor').innerText = request.valor || '';
+  document.getElementById('modalQuantidade').innerText = request.quantidade || '';
+  document.getElementById('modalTotal').innerText = request.total || '';
+  document.getElementById('modalStatus').innerText = request.status || '';
+  document.getElementById('modalNumeroNFe').innerText = request.numeroNFe || '';
+  document.getElementById('modalDataEmissao').innerText = request.dataEmissao || '';
+
+  // Exibe o modal
+  $('#modalDetalhesRequest').modal('show');
+}
+
+
+  // carregarPagina("request_Nfe");
     </script>
   </body>
 </html>
